@@ -1,0 +1,33 @@
+name: Trash Reminder
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 17:00 Việt Nam = 10:00 UTC
+    - cron: "0 10 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run reminder
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GROUP_ID: ${{ secrets.GROUP_ID }}
+        run: python reminder.py
