@@ -47,12 +47,9 @@ async def main() -> None:
     person = member_for_day(load_members(), today)
 
     name = html.escape(str(person["name"]))
-    user_id = int(person["user_id"])
     message = (
         "🗑️ <b>NHẮC ĐỔ RÁC</b>\n\n"
-        "Hôm nay đến lượt\n\n"
-        f'👉 <a href="tg://user?id={user_id}">{name}</a>\n\n'
-        "⏰ Nhớ mang rác ra lúc 17:00 nhé."
+        f"👉 {name} nay đổ rác, lồng túi rác."
     )
 
     async with Bot(token=bot_token) as bot:
