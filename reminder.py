@@ -48,7 +48,6 @@ async def main() -> None:
 
     name = html.escape(str(person["name"]))
     message = (
-        "🗑️ <b>NHẮC ĐỔ RÁC</b>\n\n"
         f"👉 {name} nay đổ rác, lồng túi rác."
     )
 
